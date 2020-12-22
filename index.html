@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<title>quiZ | Conhecimentos Gerais</title>
+	<meta charset="utf-8">
+	<link rel='shortcut icon' type='image/x-icon' href='img/favicon.ico' />
+	<style type="text/css"> /* Início CSS */
+		
+		body {
+  			margin: 0 auto;
+  			max-width: 50em;
+  			font-family: "Helvetica", "Arial", sans-serif;
+  			text-align: center;
+  			background: #fff;
+  			color: #999;
+		}
+
+		div {
+			margin-top: 1em;
+			padding: 1em;
+			background: #fff;
+			border-radius: 10px;
+			box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+		}
+
+		h1 {
+			color: #007acc;
+			font-weight: bolder;
+		}
+
+		h2, h3 {
+			color: #007acc;
+		}
+
+		button {
+			background: #007acc;
+			color: white;
+			border-radius: 5px;
+			border: none;
+			padding: 0.7em;
+		}
+
+
+		#quiz {
+			all: unset;
+		}
+
+		.infoCorrecao {
+			display: none;
+		}
+
+		/* Fim CSS */
+	</style>
+
+	<script> //Início do JavaScript
+		
+		function mouseSobreBotao(botao) {
+			botao.style.background = '#005c99';
+		}
+
+		function mouseForaBotao(botao) {
+			botao.style.background = '#007acc';
+		}
+
+		function iniciarQuiz() {
+			var quiz = document.getElementById("quiz");
+			quiz.style = "display: block";
+			botaoIniciar = document.getElementById("botaoIniciar");
+			botaoIniciar.innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20" fill="currentColor" style="vertical-align: middle"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd" /></svg><strong style="vertical-align: middle"> Quiz iniciado</strong>';
+		}
+
+		function verificarRespostas() {
+		  	
+		  	var verifica = [];
+		  	var respostasCertas = 0;
+		  	var infoCorrecao = document.getElementsByClassName("infoCorrecao");
+		  	var nomeClassePerguntas = [];
+		  	var nomeClasseCorrecao = [];
+		  	var perguntas = document.getElementsByClassName("perguntas");
+		  		
+		  	for (p = 0; p < perguntas.length; p++) {
+		  		n = String(p + 1);
+		  		nomeClassePerguntas[p] = "pergunta" + n;
+		  		nomeClasseCorrecao[p] = "correcao" + n;
+		  	}
+
+
+		  	for (p = 0; p < perguntas.length; p++) {
+		  		verifica[p] = document.getElementsByClassName(nomeClassePerguntas[p]);
+			  	for (i = 0; i < 2; i++) {
+			  		if ((verifica[p].item(i).checked == true) && (verifica[p].item(i).value == "correto")) {
+			  				document.getElementById(nomeClasseCorrecao[p]).innerHTML = "<p style='color:green'><strong>Resposta certa!</strong></p>";
+			  				respostasCertas = respostasCertas + 1;
+			  			}
+			  		if ((verifica[p].item(i).checked == true) && (verifica[p].item(i).value == "errado")) {
+			  				document.getElementById(nomeClasseCorrecao[p]).innerHTML = "<p style='color:red'><strong>Resposta errada.</strong></p>";
+			  			}
+
+			  		}
+			  	}
+		
+			for (p = 0; p < infoCorrecao.length; p++) {
+				infoCorrecao[p].style.display = "inline-block";
+			}
+
+			document.getElementById("numeroCertas").innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20" fill="#007acc" style="vertical-align: middle"><path d="M2 11a1 1 0 011-1h2a1 1 0 011 1v5a1 1 0 01-1 1H3a1 1 0 01-1-1v-5zM8 7a1 1 0 011-1h2a1 1 0 011 1v9a1 1 0 01-1 1H9a1 1 0 01-1-1V7zM14 4a1 1 0 011-1h2a1 1 0 011 1v12a1 1 0 01-1 1h-2a1 1 0 01-1-1V4z" /></svg><h3 id="parabens"></h3><p> Você acertou ' + respostasCertas + ' das '+ perguntas.length +' questões.</p>';
+			if (respostasCertas == perguntas.length) {
+				document.getElementById("parabens").innerHTML = 'Parabéns!'
+			}
+
+			if (respostasCertas < 10 && respostasCertas >= 8) {
+				document.getElementById("parabens").innerHTML = 'Por pouco!'
+			}
+
+			document.getElementById("botaoVerificaRespostas").style.display = 'none';  	 
+		  	}
+
+		
+
+		//Fim do Javascript
+	</script>
+
+	
+</head>
+
+<body>
+
+
+	<!-- Início da apresentação -->
+	<div> 
+		<h1><a href="#"><img src="img/quizlogo1.png" width="150em"></a></h1>
+		<h2>Conhecimentos Gerais</h2>
+		<p>Um quiz desenvolvido para testar os seus conhecimentos relacionados a áreas diversas do conhecimento</p>
+	</div>
+
+	<div>
+
+		<h2> Vamos começar? </h2>
+		<button type="button" id="botaoIniciar" onmouseover="mouseSobreBotao(this)" onmouseout="mouseForaBotao(this)" onclick="iniciarQuiz()">
+			<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20" fill="none" style="vertical-align: middle">
+			<path fill-rule="evenodd" clip-rule="evenodd" d="M10 18C14.4183 18 18 14.4183 18 10C18 5.58172 14.4183 2 10 2C5.58172 2 2 5.58172 2 10C2 14.4183 5.58172 18 10 18ZM11 7C11 6.44772 10.5523 6 10 6C9.44771 6 9 6.44772 9 7L9 10.5858L7.70711 9.29289C7.31658 8.90237 6.68342 8.90237 6.29289 9.29289C5.90237 9.68342 5.90237 10.3166 6.29289 10.7071L9.29289 13.7071C9.68342 14.0976 10.3166 14.0976 10.7071 13.7071L13.7071 10.7071C14.0976 10.3166 14.0976 9.68342 13.7071 9.29289C13.3166 8.90237 12.6834 8.90237 12.2929 9.29289L11 10.5858V7Z" fill="#fff"/>
+			</svg>
+			<strong style="vertical-align: middle">Iniciar</strong>
+		</button>
+
+	</div>
+	<!-- Fim da apresentação -->
+
+	<!-- Início do quiz -->
+	<div id="quiz" style="display: none">	
+		<div class="perguntas"> <!-- Pergunta 1 -->
+			
+				<h2>
+					<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+  					<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z" />
+					</svg>
+				 Questão 1 </h2>
+				<p><strong> O nome da galáxia mais próxima à Via Láctea é Andrômeda.</strong></p>
+				<input type="radio" name="resposta1" class="pergunta1" value="correto"> Verdadeiro
+				<input type="radio" name="resposta1" class="pergunta1" value="errado"> Falso
+				
+				<p id="correcao1"></p>
+		</div>
+
+		<div class="perguntas"><!-- Pergunta 2 -->
+			
+				<h2>
+					<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+  					<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z" />
+					</svg>
+					 Questão 2 
+				</h2>
+				<p><strong> O animal mais rápido do mundo é o guepardo.</strong></p>
+				<input type="radio" name="resposta2" class="pergunta2" value="errado"> Verdadeiro
+				<input type="radio" name="resposta2" class="pergunta2" value="correto"> Falso
+				
+				<p id="correcao2"></p>
+				<p class="infoCorrecao">Resposta: O animal mais rápido do mundo é o <strong>falcão peregrino</strong>, chegando a velocidades de 320km/h em vôo.</p>
+		</div>
+
+		<div class="perguntas"><!-- Pergunta 3 -->
+			
+				<h2>
+					<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+  					<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z" />
+					</svg>
+					 Questão 3 
+				</h2>
+				<p><strong> Durante a Segunda Guerra Mundial, a aliança conhecida como "Eixo" era formada, principalmente, por Alemanha, Japão e França.</strong></p>
+				<input type="radio" name="resposta3" class="pergunta3" value="errado"> Verdadeiro
+				<input type="radio" name="resposta3" class="pergunta3" value="correto"> Falso
+				
+				<p id="correcao3"></p>
+				<p class="infoCorrecao">Resposta: As potências do Eixo eram formadas, principalmente, por Alemanha, Japão e Itália. A França fazia parte dos Aliados.</p>
+		</div>
+
+		<div class="perguntas"><!-- Pergunta 4 -->
+			
+				<h2>
+					<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+  					<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z" />
+					</svg>
+					 Questão 4 
+				</h2>
+				<p><strong> O gás presente em maior quantidade na atmosfera terrestre é o nitrogênio (N2).</strong></p>
+				<input type="radio" name="resposta4" class="pergunta4" value="correto"> Verdadeiro
+				<input type="radio" name="resposta4" class="pergunta4" value="errado"> Falso
+				
+				<p id="correcao4"></p>
+		</div>
+
+		<div class="perguntas"><!-- Pergunta 5 -->
+			
+				<h2>
+					<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+  					<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z" />
+					</svg>
+					 Questão 5 
+				</h2>
+				<p><strong> O famoso comediante Charlie Chaplin nasceu na cidade de Nova Iorque, nos Estados Unidos.</strong></p>
+				<input type="radio" name="resposta5" class="pergunta5" value="errado"> Verdadeiro
+				<input type="radio" name="resposta5" class="pergunta5" value="correto"> Falso
+				
+				<p id="correcao5"></p>
+				<p class="infoCorrecao"> Resposta: Charlie Chaplin era britânico e nasceu em Londres.</p>
+		</div>
+
+		<div class="perguntas"><!-- Pergunta 6 -->
+			
+				<h2>
+					<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+  					<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z" />
+					</svg>
+					 Questão 6 
+				</h2>
+				<p><strong> Os astronautas americanos Neil Armstrong e Buzz Aldrin foram os primeiros homens a viajar para o espaço.</strong></p>
+				<input type="radio" name="resposta6" class="pergunta6" value="errado"> Verdadeiro
+				<input type="radio" name="resposta6" class="pergunta6" value="correto"> Falso
+				
+				<p id="correcao6"></p>
+				<p class="infoCorrecao"> Resposta: O primeiro homem a ir para o espaço foi o cosmonauta soviético <strong>Iuri Gagarin</strong>, em 1961. Os americanos seriam os primeiros homens a <strong>pisar na Lua</strong>, 8 anos depois.</p>
+		</div>
+
+		<div class="perguntas"><!-- Pergunta 7 -->
+			
+				<h2>
+					<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+  					<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z" />
+					</svg>
+					 Questão 7 
+				</h2>
+				<p><strong> O sistema métrico é adotado como sistema padrão de medidas por diversos países do mundo, entre eles: Reino Unido, Austrália e Nova Zelândia.</strong></p>
+				<input type="radio" name="resposta7" class="pergunta7" value="correto"> Verdadeiro
+				<input type="radio" name="resposta7" class="pergunta7" value="errado"> Falso
+				
+				<p id="correcao7"></p>
+		</div>
+
+		<div class="perguntas"><!-- Pergunta 8 -->
+			
+				<h2>
+					<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+  					<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z" />
+					</svg>
+					 Questão 8 
+				</h2>
+				<p><strong> O intestino é o maior órgão do corpo humano.</strong></p>
+				<input type="radio" name="resposta8" class="pergunta8" value="errado"> Verdadeiro
+				<input type="radio" name="resposta8" class="pergunta8" value="correto"> Falso
+				
+				<p id="correcao8"></p>
+				<p class="infoCorrecao"> Resposta: O maior órgão do corpo humano é a <strong>pele</strong>.</p>
+		</div>
+
+		<div class="perguntas"><!-- Pergunta 9 -->
+			
+				<h2>
+					<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+  					<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z" />
+					</svg>
+					 Questão 9 
+				</h2>
+				<p><strong> A fórmula original da Coca-Cola continha cocaína.</strong></p>
+				<input type="radio" name="resposta9" class="pergunta9" value="correto"> Verdadeiro
+				<input type="radio" name="resposta9" class="pergunta9" value="errado"> Falso
+				
+				<p id="correcao9"></p>
+		</div>
+
+		<div class="perguntas"><!-- Pergunta 10 -->
+			
+				<h2>
+					<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+  					<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z" />
+					</svg>
+					 Questão 10 
+				</h2>
+				<p><strong> Nos anos 90, Steve Jobs foi demitido da Apple.</strong></p>
+				<input type="radio" name="resposta10" class="pergunta10" value="correto"> Verdadeiro
+				<input type="radio" name="resposta10" class="pergunta10" value="errado"> Falso
+				
+				<p id="correcao10"></p>
+		</div>
+		
+
+		<div style="margin-bottom: 1em"> <!-- Botão para mostrar resultado -->
+			<p id="numeroCertas"></p>
+			<button type="button" id="botaoVerificaRespostas" onmouseover="mouseSobreBotao(this)" onmouseout="mouseForaBotao(this)" onclick="verificarRespostas()">
+				<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20" fill="currentColor" style="vertical-align: middle">
+  				<path fill-rule="evenodd" d="M6.267 3.455a3.066 3.066 0 001.745-.723 3.066 3.066 0 013.976 0 3.066 3.066 0 001.745.723 3.066 3.066 0 012.812 2.812c.051.643.304 1.254.723 1.745a3.066 3.066 0 010 3.976 3.066 3.066 0 00-.723 1.745 3.066 3.066 0 01-2.812 2.812 3.066 3.066 0 00-1.745.723 3.066 3.066 0 01-3.976 0 3.066 3.066 0 00-1.745-.723 3.066 3.066 0 01-2.812-2.812 3.066 3.066 0 00-.723-1.745 3.066 3.066 0 010-3.976 3.066 3.066 0 00.723-1.745 3.066 3.066 0 012.812-2.812zm7.44 5.252a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
+				</svg>
+				<strong style="vertical-align: middle">Verificar respostas</strong>
+			</button>
+		</div>
+	</div>
+	<!-- Fim do quiz -->
+	
+</body>
+</html>
