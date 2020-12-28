@@ -1,0 +1,42 @@
+body {
+    margin: 0 auto;
+    max-width: 50em;
+    font-family: "Helvetica", "Arial", sans-serif;
+    text-align: center;
+    background: #fff;
+    color: #999;
+}
+
+div {
+  margin-top: 1em;
+  padding: 1em;
+  background: #fff;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+h1 {
+  color: #007acc;
+  font-weight: bolder;
+}
+
+h2, h3 {
+  color: #007acc;
+}
+
+button {
+  background: #007acc;
+  color: white;
+  border-radius: 5px;
+  border: none;
+  padding: 0.7em;
+}
+
+
+#quiz {
+  all: unset;
+}
+
+.infoCorrecao {
+  display: none;
+}
