@@ -52,7 +52,7 @@ function verificarRespostas() {
         document.getElementById("parabens").innerHTML = 'Parabéns!'
     }
 
-    if (respostasCertas < 10 && respostasCertas >= 8) {
+    if (respostasCertas < perguntas.length && respostasCertas >= 8) {
         document.getElementById("parabens").innerHTML = 'Por pouco!'
     }
 
