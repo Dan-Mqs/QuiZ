@@ -1,4 +1,7 @@
 # QuiZ
+
+### [Click here to test it | Clique aqui para testar](https://dan-mqs.github.io/QuiZ/)
+
 EN:
  Simple quiz made with HTML, some CSS and handwritten vanilla Javascript. This was a college project for the 2nd semester/2020 (also 2nd semester of the course). Website and code are mainly in Portuguese(BR).
 
